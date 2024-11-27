@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World History Quiz: World History</title>
+    <style>
+        /* Styling for the quiz */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+        }
+
+        #quiz-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        #question-container {
+            margin-top: 20px;
+        }
+
+        .choice-button {
+            display: block;
+            margin: 10px 0;
+            padding: 10px 20px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-align: left;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        .choice-button:hover {
+            background: #0056b3;
+        }
+
+        #feedback {
+            margin-top: 20px;
+            padding: 10px;
+            background: #f9f9f9;
+            border-left: 5px solid #ccc;
+        }
+
+        #next-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: none;
+        }
+
+        #next-button:disabled {
+            background: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <div id="quiz-container">
+        <h1>World History Quiz: Post Cold World Quiz #2</h1>
+        <div id="question-container"></div>
+        <button id="next-button">Next Question</button>
+        <div id="feedback"></div>
+    </div>
+    <script>
+        // JavaScript for quiz functionality
+        const questions = [
+{
+    question: "What is the primary role of NATO in the modern world?",
+    choices: [
+        "To enforce free trade agreements",
+        "To provide collective defense for its member nations",
+        "To regulate the United Nations",
+        "To promote environmental sustainability"
+    ],
+    correctAnswer: 1,
+    explanation: "NATO (North Atlantic Treaty Organization) is a military alliance that ensures collective defense among its member nations."
+},
+{
+    question: "What event triggered the global financial crisis of 2008?",
+    choices: [
+        "The collapse of Lehman Brothers",
+        "The U.S. invasion of Iraq",
+        "The Arab Spring protests",
+        "The signing of NAFTA"
+    ],
+    correctAnswer: 0,
+    explanation: "The collapse of Lehman Brothers, a major financial institution, triggered the global financial crisis by exposing vulnerabilities in the housing market."
+},
+{
+    question: "Which region has been most affected by the refugee crisis since 2010?",
+    choices: [
+        "North America",
+        "The Middle East",
+        "Southeast Asia",
+        "Sub-Saharan Africa"
+    ],
+    correctAnswer: 1,
+    explanation: "The Middle East has experienced a significant refugee crisis due to conflicts such as the Syrian Civil War and instability in Iraq."
+},
+{
+    question: "What is the significance of the United Nations Universal Declaration of Human Rights?",
+    choices: [
+        "It established international environmental policies",
+        "It outlined fundamental rights for all people",
+        "It created the International Criminal Court",
+        "It resolved post-World War II territorial disputes"
+    ],
+    correctAnswer: 1,
+    explanation: "The Universal Declaration of Human Rights, adopted in 1948, outlines fundamental rights and freedoms that should be protected worldwide."
+},
+{
+    question: "What was the primary goal of the European Union's creation?",
+    choices: [
+        "To promote economic and political integration",
+        "To create a unified military force",
+        "To expand NATO's influence",
+        "To enforce environmental treaties"
+    ],
+    correctAnswer: 0,
+    explanation: "The European Union (EU) was established to promote economic and political cooperation among its member states, fostering peace and stability."
+},
+{
+    question: "What is a key effect of globalization on developing countries?",
+    choices: [
+        "Decreased access to technology",
+        "Increased trade and foreign investment",
+        "A decline in urbanization",
+        "Reduction in economic interdependence"
+    ],
+    correctAnswer: 1,
+    explanation: "Globalization has increased trade and foreign investment in developing countries, although it has also brought challenges like economic inequality."
+},
+{
+    question: "Which agreement aimed to eliminate trade barriers between Canada, the United States, and Mexico?",
+    choices: [
+        "The Paris Agreement",
+        "The Kyoto Protocol",
+        "NAFTA (North American Free Trade Agreement)",
+        "The Treaty of Versailles"
+    ],
+    correctAnswer: 2,
+    explanation: "NAFTA aimed to reduce trade barriers and promote economic cooperation among Canada, the United States, and Mexico."
+},
+{
+    question: "What major challenge is associated with rapid urbanization in developing nations?",
+    choices: [
+        "Declining population growth",
+        "Inadequate infrastructure and services",
+        "Improved healthcare systems",
+        "Decreasing economic productivity"
+    ],
+    correctAnswer: 1,
+    explanation: "Rapid urbanization often leads to inadequate infrastructure, such as housing, transportation, and sanitation, in developing countries."
+},
+{
+    question: "What was a key consequence of the Rwandan Genocide in 1994?",
+    choices: [
+        "The establishment of NATO",
+        "The trial of perpetrators in international courts",
+        "The creation of the European Union",
+        "The end of colonial rule in Africa"
+    ],
+    correctAnswer: 1,
+    explanation: "The Rwandan Genocide led to international trials for war crimes, including the establishment of the International Criminal Tribunal for Rwanda."
+},
+{
+    question: "What was the primary focus of the Millennium Development Goals (MDGs)?",
+    choices: [
+        "To combat global poverty and promote development",
+        "To establish a global free trade zone",
+        "To regulate greenhouse gas emissions",
+        "To unify global military alliances"
+    ],
+    correctAnswer: 0,
+    explanation: "The Millennium Development Goals (2000-2015) aimed to reduce poverty, improve education, and promote global health."
+},
+{
+    question: "Which agreement replaced NAFTA in 2020?",
+    choices: [
+        "The Trans-Pacific Partnership (TPP)",
+        "The USMCA (United States-Mexico-Canada Agreement)",
+        "The Paris Agreement",
+        "The WTO Trade Accord"
+    ],
+    correctAnswer: 1,
+    explanation: "The USMCA replaced NAFTA in 2020, updating trade agreements between the United States, Mexico, and Canada."
+},
+{
+    question: "Which organization was established to prosecute individuals for war crimes and genocide?",
+    choices: [
+        "The United Nations",
+        "The International Criminal Court (ICC)",
+        "NATO",
+        "The European Union"
+    ],
+    correctAnswer: 1,
+    explanation: "The ICC was established to prosecute individuals for crimes such as genocide, war crimes, and crimes against humanity."
+},
+{
+    question: "What role does the World Health Organization (WHO) play in global health?",
+    choices: [
+        "It provides military aid to developing countries",
+        "It coordinates international responses to health crises",
+        "It enforces climate change policies",
+        "It regulates global trade agreements"
+    ],
+    correctAnswer: 1,
+    explanation: "The WHO coordinates international efforts to address health crises, such as pandemics, and promotes global health standards."
+},
+{
+    question: "What environmental challenge is caused by the buildup of greenhouse gases in the atmosphere?",
+    choices: [
+        "Deforestation",
+        "Global warming",
+        "Desertification",
+        "Biodiversity loss"
+    ],
+    correctAnswer: 1,
+    explanation: "The buildup of greenhouse gases traps heat in the atmosphere, leading to global warming and climate change."
+},
+{
+    question: "What was a major consequence of the Arab Spring protests?",
+    choices: [
+        "The establishment of the European Union",
+        "The fall of authoritarian regimes in the Middle East",
+        "The end of the Cold War",
+        "The rise of NATO influence in the region"
+    ],
+    correctAnswer: 1,
+    explanation: "The Arab Spring led to the fall of authoritarian regimes in several Middle Eastern countries, though the outcomes varied widely."
+},
+{
+    question: "Which country experienced significant economic reforms under Deng Xiaoping?",
+    choices: [
+        "India",
+        "China",
+        "Japan",
+        "South Korea"
+    ],
+    correctAnswer: 1,
+    explanation: "Deng Xiaoping's economic reforms transformed China's economy by introducing elements of market-driven capitalism while maintaining communist governance."
+},
+{
+    question: "What is the primary goal of the G7 group of nations?",
+    choices: [
+        "To establish a unified currency",
+        "To address global economic and political challenges",
+        "To regulate global trade agreements",
+        "To coordinate environmental treaties"
+    ],
+    correctAnswer: 1,
+    explanation: "The G7 group focuses on addressing global economic and political challenges among the world's leading industrialized nations."
+},
+{
+    question: "Which nation was the first to achieve independence in sub-Saharan Africa after World War II?",
+    choices: [
+        "Nigeria",
+        "South Africa",
+        "Ghana",
+        "Kenya"
+    ],
+    correctAnswer: 2,
+    explanation: "Ghana became the first sub-Saharan African nation to gain independence in 1957 under the leadership of Kwame Nkrumah."
+},
+{
+    question: "What was the goal of the Green Revolution in the 20th century?",
+    choices: [
+        "To combat climate change",
+        "To increase agricultural productivity through technology",
+        "To promote environmental sustainability",
+        "To reduce greenhouse gas emissions"
+    ],
+    correctAnswer: 1,
+    explanation: "The Green Revolution used new agricultural technologies, such as high-yield crops and fertilizers, to increase food production globally."
+},
+{
+    question: "What has been a primary consequence of China's Belt and Road Initiative?",
+    choices: [
+        "Decreased global trade",
+        "Enhanced global infrastructure and trade routes",
+        "The end of European colonialism",
+        "Global disarmament"
+    ],
+    correctAnswer: 1,
+    explanation: "China's Belt and Road Initiative has enhanced global infrastructure and trade routes, connecting Asia, Europe, and Africa."
+},
+{
+    question: "What global issue has been exacerbated by the rise of social media?",
+    choices: [
+        "The decline of traditional education",
+        "The spread of misinformation and political polarization",
+        "The end of international cooperation",
+        "The collapse of economic systems"
+    ],
+    correctAnswer: 1,
+    explanation: "The rise of social media has led to the rapid spread of misinformation and increased political polarization in many societies."
+}
+
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        const questionContainer = document.getElementById("question-container");
+        const feedbackContainer = document.getElementById("feedback");
+        const nextButton = document.getElementById("next-button");
+
+        function loadQuestion() {
+            const question = questions[currentQuestion];
+            questionContainer.innerHTML = `
+                <h2>${question.question}</h2>
+                ${question.choices.map((choice, index) => `
+                    <button class="choice-button" data-choice="${index}">${choice}</button>
+                `).join('')}
+            `;
+            feedbackContainer.innerHTML = "";
+            nextButton.style.display = "none";
+
+            const choiceButtons = document.querySelectorAll(".choice-button");
+            choiceButtons.forEach(button => {
+                button.addEventListener("click", (e) => {
+                    const userAnswer = parseInt(e.target.getAttribute("data-choice"));
+                    checkAnswer(userAnswer);
+                });
+            });
+        }
+
+        function checkAnswer(userAnswer) {
+            const question = questions[currentQuestion];
+            const isCorrect = userAnswer === question.correctAnswer;
+            feedbackContainer.innerHTML = `
+                <p>${isCorrect ? "Correct!" : "Incorrect."}</p>
+                <p>${isCorrect ? "" : `The correct answer is: ${question.choices[question.correctAnswer]}`}</p>
+                <p>${question.explanation}</p>
+            `;
+            if (isCorrect) score++;
+            nextButton.style.display = "block";
+
+            // Disable buttons after selecting an answer
+            const choiceButtons = document.querySelectorAll(".choice-button");
+            choiceButtons.forEach(button => button.disabled = true);
+        }
+
+        nextButton.addEventListener("click", () => {
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                loadQuestion();
+            } else {
+                questionContainer.innerHTML = `
+                    <h2>Quiz Complete!</h2>
+                    <p>Your Score: ${score} / ${questions.length}</p>
+                `;
+                nextButton.style.display = "none";
+            }
+        });
+
+        // Load the first question on startup
+        loadQuestion();
+    </script>
+</body>
+</html>
